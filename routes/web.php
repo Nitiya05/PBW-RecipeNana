@@ -18,9 +18,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/tentang', function () {
+    return view('tentang');
+});
+
+Route::get('/resep', function () {
+    return view('resep');
+});
+
+Route::get('/landingpage', function () {
+    return view('landingpage');
+});
+
+Route::get('/landingpage', function () {
+    return view('landingpage');
+})->middleware(['auth', 'verified'])->name('landingpage');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
