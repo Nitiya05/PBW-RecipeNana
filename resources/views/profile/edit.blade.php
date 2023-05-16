@@ -1,29 +1,52 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
+@section('content')
+
+    <div class="pt-20 bg-[#442626] text-white">
+        
+    <br>
+        <div class=" flex ">
+            <div class="ml-10 my-20 sm:mx-50 ">
+                <img class="ml-20 mb-8" src="{{('image/about-img.jpg') }}">
+                <br>
+                <button type="submit"
+                            class="ml-20 block text-white bg-gray-600 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                            type="button">
+                            pilih gambar
+                        </button>
+            </div>
+            <div class="ml-20 pt-20 ">
+                <form action="/" method="post">
+                    @csrf
+                    <br>
+                    <br>
+                    
+                    <input type="text"
+                        class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5" name="nama"
+                        id="nama" placeholder="Nama">
+                        <br><br><br>
+
+                        <input type="text"
+                        class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5" name="username"
+                        id="username" placeholder="username">
+                    <br><br><br>
+
+                    <input type="text"
+                        class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5" name="email"
+                        id="email" placeholder="Email">
+
+                
+
+                    <div class="flex items-center ml-40 pl-40 p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button type="submit"
+                            class="ml-20 block text-white bg-gray-600 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                            type="button">
+                            save
+                        </button>
+                    </div>
+                </form>
+
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
-        </div>
     </div>
-</x-app-layout>
+    </div>

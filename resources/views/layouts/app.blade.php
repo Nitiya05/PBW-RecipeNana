@@ -57,9 +57,9 @@
 
 <body>
 
-    <nav class="bg-black dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <nav class="bg-[#8F4747] dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="/" class="flex items-center">
+            <a href="landingpage" class="flex items-center">
                 <img src="{{ asset('image/logoawal.png') }}">
                 <p class="ml-10 text-white text-3xl">Recipe Nana</p>
 
@@ -84,12 +84,14 @@
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
-                            <a href="/profil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profil</a>
+                            <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                Profil</a>
                         </li>
                         <li>
                             <form method="POST" id="action_logout" action="{{ url('logout') }}">
                                 @csrf
-                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white w-full">Keluar</button>
+                                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white w-full">
+                                    Keluar</button>
                             </form>
                     </ul>
                 </div>
@@ -126,15 +128,15 @@
                     </li>
                     @else
                     <li>
-                        <a href="/" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Beranda</a>
+                        <a href="/landingpage" class="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-blue-500 md:p-0 md:dark:text-blue-500" aria-current="page">Beranda</a>
                     </li>
                     @endif
                     <li>
-                        <a href="/recipe" class="block py-2 pl-3 pr-4 text-white text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Resep</a>
+                        <a href="/resep" class="block py-2 pl-3 pr-4 text-white text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Resep</a>
                     </li>
 
                     <li>
-                        <a href="/halamantentang" class="block py-2 pl-3 pr-4 text-white text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tentang</a>
+                        <a href="/tentang" class="block py-2 pl-3 pr-4 text-white text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tentang</a>
                     </li>
 
 
@@ -146,11 +148,11 @@
     @yield('content')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-
-    <footer class="bg-black dark:bg-gray-900">
+    <!-- footer -->
+    <footer class="bg-[#8F4747] dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0 pt-20">
+                <div class="mb-6 md:mb-0 ">
                     <a href="/" class="flex items-center">
                         <img src="{{ asset('image/logoawal.png') }}" class="h-8 mr-3" alt="RecipeNana Logo" />
                         <span class="self-center text-2xl font-bold font-[poppins] text-2xl whitespace-nowrap dark:text-white text-white">Recipe Nana</span>
