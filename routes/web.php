@@ -27,6 +27,8 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+
+
 Route::get('/landingpage', function () {
     return view('landingpage');
 })->middleware(['auth', 'verified'])->name('landingpage');
@@ -35,6 +37,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::middleware([CheckRole::class . ':user'])->group(function () {
+
+    });
+
+    Route::middleware([CheckRole::class . ':admin'])->group(function () {
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    });
 });
+
 
 require __DIR__.'/auth.php';
