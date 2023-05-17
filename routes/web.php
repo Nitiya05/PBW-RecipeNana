@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/tentang', function () {
     return view('tentang');
@@ -26,7 +23,7 @@ Route::get('/resep', function () {
     return view('resep');
 });
 
-Route::get('/landingpage', function () {
+Route::get('/', function () {
     return view('landingpage');
 });
 
