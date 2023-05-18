@@ -49,8 +49,8 @@ Manage User
         </tr>
     </thead>
     <tbody>
-        @if (isset($datauser))
-        @foreach ($datauser as $item)
+        @if (isset($user))
+        @foreach ($user as $item)
         <tr>
             <td class="w-4 p-4 text-base font-semibold  items-center  text-gray-900 whitespace-nowrap dark:text-white border border-blue-300 shadow rounded-md">
                 {{ $item->id }}
@@ -66,7 +66,7 @@ Manage User
             </td>
             <td class="px-20 border border-blue-300 shadow rounded-md">
                 <!-- Modal toggle -->
-                <a href="/tampilkanDataUser/{{ $item->id }}" data-modal-target="editUserModal" data-modal-show="editUserModal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit </a>
+                <a href="/data/{id}/edit" data-modal-target="editUserModal" data-modal-show="editUserModal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</a>
                 <a href="/deleteDataUser/{{ $item->id }}" data-modal-target="editUserModal" data-modal-show="editUserModal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hapus</a>
 
             </td>

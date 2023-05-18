@@ -17,4 +17,9 @@ class Resep extends Model
         'gambar',
 
     ];
+
+    public function getSomeWords($limit)
+    {
+        return $this->select('resep')->limit(5)->get();
+    }
 }

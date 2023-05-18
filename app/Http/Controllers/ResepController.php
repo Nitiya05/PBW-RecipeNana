@@ -13,15 +13,21 @@ class ResepController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {    
         $reseps = Resep::all();
-        return view('admin.kelolaResep', compact(['reseps']));
+            return view('admin.kelolaResep', compact(['reseps']));
+        
     }
 
     public function index1()
     {
-        $reseps = Resep::all();
-        return view('resep', compact(['reseps']));
+
+        $model = new Resep();
+        $words = $model->getSomeWords(5);
+
+        foreach ($words as $word) {
+            echo $word->resep;
+        }
     }
 
     /**
@@ -37,39 +43,39 @@ class ResepController extends Controller
      */
     public function store(StoreResepRequest $request)
     {
-            // validasi input
-            // $request->validate([
-            //     'nama_makanan' => 'required',
-            //     'resep' => 'required|',
-            //     'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-               
-            // ]);
-    
-    
-            // if ($request->hasFile('gambar')) { // tambahkan kondisi untuk memeriksa apakah input gambar diisi atau tidak
-            //     $gambar = $request->file('gambar');
-    
-            //     // membuat folder baru jika belum ada
-            //     $path = storage_path('app/public/assets/gambar');
-            //     if (!Storage::exists($path)) {
-            //         Storage::makeDirectory($path, 0777, true, true);
-            //     }
-    
-            //     // menyimpan file gambar ke direktori "public/assets/gambar"
-            //     $filename = $gambar->getClientOriginalName();
-            //     $gambar->storeAs('public/assets/gambar', $filename);
-            // } else {
-            //     $filename = null; // jika input gambar tidak diisi, set nilai filename menjadi null
-            // }
-    
-            // menyimpan data user ke database
-            Resep::create([
-                'nama_makanan' => $request->nama_makanan,
-                'resep' => $request->resep,
-                'gambar' => $request->gambar,
-            ]);
-    
-            return redirect('kelola-resep')->with('success', 'berhasil ditambahkan!');
+        // validasi input
+        // $request->validate([
+        //     'nama_makanan' => 'required',
+        //     'resep' => 'required|',
+        //     'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        // ]);
+
+
+        // if ($request->hasFile('gambar')) { // tambahkan kondisi untuk memeriksa apakah input gambar diisi atau tidak
+        //     $gambar = $request->file('gambar');
+
+        //     // membuat folder baru jika belum ada
+        //     $path = storage_path('app/public/assets/gambar');
+        //     if (!Storage::exists($path)) {
+        //         Storage::makeDirectory($path, 0777, true, true);
+        //     }
+
+        //     // menyimpan file gambar ke direktori "public/assets/gambar"
+        //     $filename = $gambar->getClientOriginalName();
+        //     $gambar->storeAs('public/assets/gambar', $filename);
+        // } else {
+        //     $filename = null; // jika input gambar tidak diisi, set nilai filename menjadi null
+        // }
+
+        // menyimpan data user ke database
+        Resep::create([
+            'nama_makanan' => $request->nama_makanan,
+            'resep' => $request->resep,
+            'gambar' => $request->gambar,
+        ]);
+
+        return redirect('kelola-resep')->with('success', 'berhasil ditambahkan!');
     }
 
     /**
@@ -77,15 +83,12 @@ class ResepController extends Controller
      */
     public function show(StoreResepRequest $request)
     {
-
-        
-            
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-     function edit(Resep $resep)
+    function edit(Resep $resep)
     {
         //
     }
@@ -98,6 +101,21 @@ class ResepController extends Controller
         //
     }
 
+    public function delete($id)
+    {
+        $data = Resep::find($id); // Ganti "Model" dengan nama model yang sesuai
+
+        if ($data) {
+            $data->delete();
+
+            // Tindakan lain yang sesuai setelah menghapus data
+
+            return redirect()->route('kelola-resep')->with('success', 'Data berhasil dihapus.');
+        } else {
+            // Tindakan yang sesuai jika data tidak ditemukan
+            return redirect()->route('kelola-resep')->with('error', 'Data tidak ditemukan.');
+        }
+    }
     /**
      * Remove the specified resource from storage.
      */
