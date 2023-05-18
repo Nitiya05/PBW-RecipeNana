@@ -54,12 +54,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/manage-user', [ManageUserController::class, 'index'])->name('manage-user');
         Route::get('/create-user', [ManageUserController::class, 'create'])->name('create-user');
         Route::post('/simpan-user', [ManageUserController::class, 'store'])->name('simpan-user');
-        Route::get('/tampilkanDataUser/{id}', [ManageUserController::class, 'tampilkanDataUser'])->name('tampilkanDataUser');
-        Route::post('/updateDataUser/{id}', [ManageUserController::class, 'updateDataUser'])->name('updateDataUser');
+        Route::get('/data/{id}/edit', [ManageUserController::class, 'edit'])->name('edit');
+        Route::post('/data/{id}', 'ManageUserController@update' )->name('update');
+        Route::get('/deleteDataUser/{id}', [ManageUserController::class, 'delete'])->name('deleteDataUser');
 
         Route::get('/kelola-resep', [ResepController::class, 'index'])->name('kelola-resep');
         Route::get('/create-resep', [ResepController::class, 'create'])->name('create-resep');
         Route::post('/simpan-resep', [ResepController::class, 'store'])->name('simpan-resep');
+        Route::get('/deleteResep/{id}', [ResepController::class, 'delete'])->name('deleteResep');
 
         Route::get('/kelola-saran', [SaranController::class, 'index'])->name('kelola-saran');
         

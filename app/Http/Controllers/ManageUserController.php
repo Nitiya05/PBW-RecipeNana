@@ -13,8 +13,8 @@ class ManageUserController extends Controller
      */
     public function index()
     {
-        $datauser = User::all();
-        return view('admin.manageUser', compact('datauser'));
+        $user = User::all();
+        return view('admin.manageUser', compact('user'));
     }
 
     /**
@@ -35,14 +35,14 @@ class ManageUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'role' => 'required',
-            
+
         ]);
 
         $password = $request->input('password');
         $hashedPassword = bcrypt($password);
 
-        
-        // menyimpan data user ke database
+
+        // menyimpan user user ke userbase
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -56,65 +56,27 @@ class ManageUserController extends Controller
     public function tampilkanDataUser($id)
     {
 
-        $data = User::find($id);
-        // dd($data);
-        return view('admin.editTampilanDataUser', compact('data'));
+        $user = User::find($id);
+        // dd($user);
+        return view('admin.editTampilanuserUser', compact('user'));
     }
 
-    //untuk update data user
+    //untuk update user user
     public function updateDataUser(Request $request, $id)
     {
-        // validasi input
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
-            // 'role' => 'required',
-            'profile' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
 
-        // mengambil data user dari database
+        // mengambil user user dari userbase
         $user = User::find($id);
 
-        // update data kecuali kolom gambar
-        $user->name = $request->name;
-        $user->email = $request->email;
-        // $user->role = $request->role;
+        // Update user
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        // ...
 
-        // jika ada gambar yang diunggah, maka update gambar
-        if ($request->hasFile('profile')) {
-            // menghapus gambar lama
-            Storage::delete('public/assets/profile/' . $user->gambar);
-            // menghapus gambar lama
-            Storage::delete('public/assets/profile/' . $user->gambar);
-        }
-        // membuat folder baru jika belum ada
-        $path = storage_path('app/public/assets/profile');
-        if (!Storage::exists($path)) {
-            Storage::makeDirectory($path, 0777, true, true);
-        }
+        $user->save();
 
-        // mengambil isi file gambar
-        $gambarData = null;
-        $gambar = $request->file('profile');
-        if ($gambar) {
-            $gambarData = file_get_contents($gambar->getRealPath());
-        }
-
-        // menyimpan file gambar ke direktori "public/assets/profile"
-        $filename = null;
-        if ($gambar) {
-            $filename = $request->file('profile')->store('public/assets/profile');
-            $filename = pathinfo($filename, PATHINFO_BASENAME);
-        }
-
-        // update data user ke database
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            // 'role' => $request->role,
-            'gambar' => $filename,
-        ]);
-        return redirect()->route('manage-user')->with('success', 'Data Berhasil di Edit');
+        return redirect()->route('manage-user', $user->id);
+        // Ganti "show" dengan route tampilan detail user yang sesuai
     }
 
     /**
@@ -130,15 +92,48 @@ class ManageUserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id); // Ganti "Model" dengan nama model yang sesuai
+
+        return view('admin.editTampilanDataUser', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id); // Ganti "Model" dengan nama model yang sesuai
+
+        // Update user
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        // ...
+
+        $user->save();
+        // update user user ke userbase
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            // 'role' => $request->role,
+        ]);
+
+        return redirect()->route('manage-user')->with('success', 'user Berhasil di Edit');
+    }
+
+    public function delete($id)
+    {
+        $data = User::find($id); // Ganti "Model" dengan nama model yang sesuai
+
+        if ($data) {
+            $data->delete();
+
+            // Tindakan lain yang sesuai setelah menghapus data
+
+            return redirect()->route('manage-user')->with('success', 'Data berhasil dihapus.');
+        } else {
+            // Tindakan yang sesuai jika data tidak ditemukan
+            return redirect()->route('manage-user')->with('error', 'Data tidak ditemukan.');
+        }
     }
 
     /**
