@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManageUserController;
+use App\Http\Controllers\ResepController;
+use App\Http\Controllers\SaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,13 +41,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
+    Route::get('/resep', [ResepController::class, 'index1'])->name('resep');
+    Route::get('/saran', [KritiksaranController::class, 'index'])->name('saran');
+    Route::post('/simpan-saran', [SaranController::class, 'store'])->name('simpan-saran');
     Route::middleware([CheckRole::class . ':user'])->group(function () {
 
     });
 
-    Route::middleware([CheckRole::class . ':admin'])->group(function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::middleware('checkRole:admin')->group(function (){
+        Route::get('/admin',[AdminController::class, 'index'])->name('admin');
+        Route::get('/manage-user', [ManageUserController::class, 'index'])->name('manage-user');
+        Route::get('/create-user', [ManageUserController::class, 'create'])->name('create-user');
+        Route::post('/simpan-user', [ManageUserController::class, 'store'])->name('simpan-user');
+        Route::get('/tampilkanDataUser/{id}', [ManageUserController::class, 'tampilkanDataUser'])->name('tampilkanDataUser');
+        Route::post('/updateDataUser/{id}', [ManageUserController::class, 'updateDataUser'])->name('updateDataUser');
+
+        Route::get('/kelola-resep', [ResepController::class, 'index'])->name('kelola-resep');
+        Route::get('/create-resep', [ResepController::class, 'create'])->name('create-resep');
+        Route::post('/simpan-resep', [ResepController::class, 'store'])->name('simpan-resep');
+
+        Route::get('/kelola-saran', [SaranController::class, 'index'])->name('kelola-saran');
+        
+
     });
 });
 
