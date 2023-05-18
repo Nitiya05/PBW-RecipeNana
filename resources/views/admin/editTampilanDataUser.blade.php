@@ -7,16 +7,16 @@ create user
 @section('sidebar1')
 <h3 class="ml-80 editData">EDIT DATA</h3>
 <div class="ml-80 card-body">
-    <form action="{{ route('update', {{'id' => $user->id}}) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <!-- Form fields for editing data -->
-        <input type="text" name="name" value="{{ $data->name }}">
-        <input type="text" name="email" value="{{ $data->email }}">
-        <!-- ... -->
+<form action="{{ route('update', $user->id) }}" method="POST">
+    @csrf
+    @method('PUT')
 
-        <button type="submit">Update</button>
-    </form>
+    <!-- Isi elemen formulir lainnya -->
+    <input type="text" name="name" value="{{ $user->name }}">
+    <input type="email" name="email" value="{{ $user->email }}">
+
+    <button type="submit">Update</button>
+</form>
     <!-- <form action="{{ route('update', $data->id) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">

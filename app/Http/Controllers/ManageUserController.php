@@ -56,9 +56,8 @@ class ManageUserController extends Controller
     public function tampilkanDataUser($id)
     {
 
-        $user = User::find($id);
-        // dd($user);
-        return view('admin.editTampilanuserUser', compact('user'));
+        $user = User::findOrFail($id); // Ganti "User" dengan nama model yang sesuai
+        return view('users.edit', compact('user'));
     }
 
     //untuk update user user
@@ -92,8 +91,7 @@ class ManageUserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id); // Ganti "Model" dengan nama model yang sesuai
-
+        $user = User::findOrFail($id); // Ganti "User" dengan nama model yang sesuai
         return view('admin.editTampilanDataUser', compact('user'));
     }
 
