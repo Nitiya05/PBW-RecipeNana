@@ -13,11 +13,12 @@
                 <th scope="col" class="px-6 py-3 text-center">
                     
                 </th>
+                
             </tr>
-            
+            @foreach  ($reseps as $ks)
             <tr>
                 <td class="text-white text-xl text-center">
-                    1<br><br>
+                {{ $ks->nama_makanan}}<br><br>
                     <button>
                         <a href="/recipe" class =" py-2 pl-3 pr-4 md:py-2 font-bold text-white rounded-xl md:border-2 border-white mb-10">
                             Selengkapnya
@@ -25,10 +26,10 @@
                     </button><br><br><br>
                 </td>
                 <td >
-                    2<br>
+                {{ $ks->gambar }}<br>
                 </td>
             </tr>
-           
+            @endforeach
         </thead>
     </div>
 

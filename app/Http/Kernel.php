@@ -43,12 +43,22 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'admin' => [
+            
+            \App\Http\Middleware\AdminMiddleware::class,
+            \App\Http\Middleware\RedirectIfNotAdmin::class,
+        ],
+        'auth' =>[ \App\Http\Middleware\Authenticate::class,
+         ],
+        'checkrole' =>[ \App\Http\Middleware\CheckRole::class,
+         ]
     ];
 
     /**
      * The application's middleware aliases.
      *
-     * Aliases may be used instead of class names to conveniently assign middleware to routes and groups.
+     * Aliases may be used to conveniently assign middleware to routes and groups.
      *
      * @var array<string, class-string|string>
      */
@@ -63,5 +73,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'checkRole' => \App\Http\Middleware\CheckRole::class,
     ];
 }

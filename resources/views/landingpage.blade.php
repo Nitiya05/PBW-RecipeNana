@@ -135,7 +135,7 @@
                 <img class="ml-20 mb-8" src="{{('image/about-img.jpg') }}">
             </div>
             <div class="ml-20 ">
-                <form action="/simpan-Kritik" method="post">
+                <form action="/simpan-saran" method="post">
                     @csrf
                     <br>
                     <br>
@@ -151,22 +151,22 @@
                         class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5" name="nama"
                         id="nama" placeholder="Tuliskan nama anda">
 
-                    <label for="email" class="text-white">
+                    <label for="nama_makanan" class="text-white">
                         <p class="form-label block mb-2 text-sm font-medium text-gray-900 ">
                             <br>Nama Makanan
                         </p>
                     </label>
                     <input type="text"
-                        class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5" name="email"
-                        id="email" placeholder="Tuliskan nama makanan">
+                        class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5" name="nama_makanan"
+                        id="nama_makanan" placeholder="Tuliskan nama makanan">
 
-                    <label for="pesan" class="text-white">
+                    <label for="keterangan" class="text-white">
                         <p class="form-label block mb-2 text-sm font-medium text-gray-900 ">
                             <br>Keterangan
                         </p>
                     </label>
                     <textarea class="form-control bg-gray-200 hover:bg-gray-300 rounded-3xl flex-wrap w-full p-2.5"
-                        placeholder="Tuliskan kritik dan saran anda" name="pesan" id="pesan" style="height: 150px"></textarea>
+                        placeholder="Tuliskan kritik dan saran anda" name="keterangan" id="keterangan" style="height: 150px"></textarea>
 
                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                         <button type="submit"
