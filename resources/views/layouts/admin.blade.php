@@ -62,14 +62,6 @@
                         <span class="title">Permintaan</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Keluar</span>
-                    </a>
-                </li>
             </ul>
         </div>
         
