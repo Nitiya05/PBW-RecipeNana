@@ -20,7 +20,7 @@
                 <td class="text-white text-xl text-center">
                 {{ $ks->nama_makanan}}<br><br>
                     <button>
-                        <a href="/recipe" class =" py-2 pl-3 pr-4 md:py-2 font-bold text-white rounded-xl md:border-2 border-white mb-10">
+                        <a href="#" class =" py-2 pl-3 pr-4 md:py-2 font-bold text-white rounded-xl md:border-2 border-white mb-10">
                             Selengkapnya
                         </a>
                     </button><br><br><br>

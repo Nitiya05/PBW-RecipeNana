@@ -22,12 +22,8 @@ class ResepController extends Controller
     public function index1()
     {
 
-        $model = new Resep();
-        $words = $model->getSomeWords(5);
-
-        foreach ($words as $word) {
-            echo $word->resep;
-        }
+        $reseps = Resep::all();
+            return view('resep', compact(['reseps']));
     }
 
     /**
