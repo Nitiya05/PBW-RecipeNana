@@ -7,7 +7,7 @@ Membuat web bernama Recipe NaNa untuk menampilkan beberapa resep yang dapat dico
 1. Nitiya Rihadatul 'Aisy (2108107010003)
 2. Najla Raihana Kamila (2108107010067)
 
-## Menjalankan Web OilFree
+## Menjalankan Web Recipe NaNa
  Jalankan server laravel
  
     php artisan serve
