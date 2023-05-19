@@ -89,6 +89,3 @@
 </button>
 
 @endsection
-
-@section('footer')
-@endsection
