@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\ResepController;
 use App\Http\Controllers\SaranController;
+use App\Http\Controllers\DatabaseDumpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,9 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+Route::get('/more/{id}', [ResepController::class, 'index2'])->name('more');
 
+Route::get('/database/dump', [DatabaseDumpController::class, 'createDump']);
 
 Route::get('/landingpage', function () {
     return view('landingpage');
@@ -41,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    
     Route::get('/resep', [ResepController::class, 'index1'])->name('resep');
     Route::get('/saran', [KritiksaranController::class, 'index'])->name('saran');
     Route::post('/simpan-saran', [SaranController::class, 'store'])->name('simpan-saran');
@@ -60,12 +63,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/deleteDataUser/{id}', [ManageUserController::class, 'delete'])->name('deleteDataUser');
 
-
+        Route::get('/tampilkanDataResep/{id}',[ ResepController::class,'edit'] )->name('tampilkanDataResep');
         Route::get('/kelola-resep', [ResepController::class, 'index'])->name('kelola-resep');
         Route::get('/create-resep', [ResepController::class, 'create'])->name('create-resep');
         Route::post('/simpan-resep', [ResepController::class, 'store'])->name('simpan-resep');
         Route::get('/deleteResep/{id}', [ResepController::class, 'delete'])->name('deleteResep');
-        Route::get('/hasil/{id}', [ResepController::class, 'index1'])->name('hasil');
+        
 
         Route::get('/kelola-saran', [SaranController::class, 'index'])->name('kelola-saran');
         

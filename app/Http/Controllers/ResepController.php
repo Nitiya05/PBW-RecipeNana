@@ -19,6 +19,13 @@ class ResepController extends Controller
             return view('admin.kelolaResep', compact(['reseps']));
         
     }
+    
+    public function index2(string $id)
+    {    
+        $reseps = Resep::findOrFail($id); // Ganti "User" dengan nama model yang sesuai
+        return view('resep', compact('reseps'));
+        
+    }
 
     public function index1()
     {
@@ -81,17 +88,33 @@ class ResepController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    function edit(Resep $resep)
+    function edit(Resep $id)
     {
-        //
+        $resep = Resep::findOrFail($id); // Ganti "User" dengan nama model yang sesuai
+        return view('admin.editTampilanResep', compact('resep'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateResepRequest $request, Resep $resep)
+    public function update(Request $request, $id)
     {
-        //
+        $user = Resep::find($id); // Ganti "Model" dengan nama model yang sesuai
+
+        // Update user
+        $user->name = $request->input('nama_makanan');
+        $user->email = $request->input('resep');
+        // ...
+
+        $user->save();
+        // update user user ke userbase
+        $user->update([
+            'nama_makanan' => $request->nama_makanan,
+            'resep' => $request->resep,
+           
+        ]);
+
+        return redirect()->route('kelola-resep')->with('success', 'Resep Berhasil di Edit');
     }
 
     public function delete($id)
