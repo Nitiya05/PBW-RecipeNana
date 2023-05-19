@@ -32,6 +32,8 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+Route::get('/more/{id}', [ResepController::class, 'index2'])->name('more');
+
 Route::get('/database/dump', [DatabaseDumpController::class, 'createDump']);
 
 Route::get('/landingpage', function () {
@@ -61,12 +63,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/deleteDataUser/{id}', [ManageUserController::class, 'delete'])->name('deleteDataUser');
 
-
+        Route::get('/tampilkanDataResep/{id}',[ ResepController::class,'edit'] )->name('tampilkanDataResep');
         Route::get('/kelola-resep', [ResepController::class, 'index'])->name('kelola-resep');
         Route::get('/create-resep', [ResepController::class, 'create'])->name('create-resep');
         Route::post('/simpan-resep', [ResepController::class, 'store'])->name('simpan-resep');
         Route::get('/deleteResep/{id}', [ResepController::class, 'delete'])->name('deleteResep');
-        Route::get('/hasil/{id}', [ResepController::class, 'index1'])->name('hasil');
+        
 
         Route::get('/kelola-saran', [SaranController::class, 'index'])->name('kelola-saran');
         

@@ -7,7 +7,6 @@
         <table border="3" class="w-full bg-[#442626] text-sm text-left text-gray-500 dark:text-gray-400">
         <thead>
             <tr>
-                
                 <th scope="col" class="px-6 py-3 text-center">
                     
                 </th>
@@ -19,17 +18,11 @@
             @foreach  ($reseps as $ks)
             <tr>
                 <td class="text-white text-xl text-center">
-                {{ $ks->nama_makanan}}<br><br>
-                    <button>
-                        <a href="/more/{{ $ks->id }}" class =" py-2 pl-3 pr-4 md:py-2 font-bold text-white rounded-xl md:border-2 border-white mb-10">
-                            see more
-                        </a>
-                    </button><br><br><br>
+                {{ $ks->resep}}<br><br>
                 </td>
                 <td >
                 <img class="w-80" src="storage/posts/{{$ks->gambar}}" alt="gambarreep "><br>
                 </td>
-                
             </tr>
             @endforeach
         </thead>
