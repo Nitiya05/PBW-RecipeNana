@@ -21,12 +21,12 @@
                 {{ $ks->nama_makanan}}<br><br>
                     <button>
                         <a href="#" class =" py-2 pl-3 pr-4 md:py-2 font-bold text-white rounded-xl md:border-2 border-white mb-10">
-                            Selengkapnya
+                            {{$ks->resep}}
                         </a>
                     </button><br><br><br>
                 </td>
                 <td >
-                {{ $ks->gambar }}<br>
+                <img class="w-80" src="storage/posts/{{$ks->gambar}}" alt="gambarreep "><br>
                 </td>
             </tr>
             @endforeach
