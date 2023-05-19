@@ -7,8 +7,7 @@ create user
 @section('sidebar1')
 <h3 class="ml-80 tambahAdmin">TAMBAH RESEP<br></h3>
 <div class="mt-10 ml-80 card-body">
-    <form action="{{ route('simpan-resep') }}" method="post" >
-        {{ csrf_field() }}
+    <form action="{{ route('simpan-resep') }}" method="post" enctype="multipart/form-data"  >
         @csrf
         <div class="form-group">
             <label for="nama_makanan">Nama Makanan<br></label>

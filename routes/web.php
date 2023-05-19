@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/create-user', [ManageUserController::class, 'create'])->name('create-user');
         Route::post('/simpan-user', [ManageUserController::class, 'store'])->name('simpan-user');
         Route::get('/data/{id}/edit', [ManageUserController::class, 'edit'])->name('edit');
-        Route::post('/tampilkanDataUser/{id}',[ ManageUserController::class,'edit'] )->name('tampilkanDataUser');
-        Route::post('/tampilkanDataUser/{id}',[ ManageUserController::class,'update'] )->name('tampilkanDataUser');
+        Route::get('/tampilkanDataUser/{id}',[ ManageUserController::class,'edit'] )->name('tampilkanDataUser');
+        Route::post('/tampilkanDataUser/{id}',[ ManageUserController::class,'update'] )->name('datauser.update');
 
         Route::get('/deleteDataUser/{id}', [ManageUserController::class, 'delete'])->name('deleteDataUser');
 

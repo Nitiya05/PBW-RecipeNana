@@ -6,6 +6,7 @@ use App\Models\Resep;
 use App\Http\Requests\StoreResepRequest;
 use App\Http\Requests\UpdateResepRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ResepController extends Controller
 {
@@ -23,7 +24,7 @@ class ResepController extends Controller
     {
 
         $reseps = Resep::all();
-            return view('resep', compact(['reseps']));
+        return view('resep', compact(['reseps']));
     }
 
     /**
@@ -37,38 +38,34 @@ class ResepController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreResepRequest $request)
-    {
-        // validasi input
-        // $request->validate([
-        //     'nama_makanan' => 'required',
-        //     'resep' => 'required|',
-        //     'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    public function store(Request $request)
+    {   
+        $this->validate($request,[
+            'nama_makanan' => 'required',
+            'resep' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        
+        if ($request->hasFile('gambar')) { // tambahkan kondisi untuk memeriksa apakah input gambar diisi atau tidak
+            $gambar = $request->file('gambar');
+            // membuat folder baru jika belum ada
+            $path = storage_path('/public/posts');
+            if (!Storage::exists($path)) {
+                Storage::makeDirectory($path, 0777, true, true);
+            }
 
-        // ]);
-
-
-        // if ($request->hasFile('gambar')) { // tambahkan kondisi untuk memeriksa apakah input gambar diisi atau tidak
-        //     $gambar = $request->file('gambar');
-
-        //     // membuat folder baru jika belum ada
-        //     $path = storage_path('app/public/assets/gambar');
-        //     if (!Storage::exists($path)) {
-        //         Storage::makeDirectory($path, 0777, true, true);
-        //     }
-
-        //     // menyimpan file gambar ke direktori "public/assets/gambar"
-        //     $filename = $gambar->getClientOriginalName();
-        //     $gambar->storeAs('public/assets/gambar', $filename);
-        // } else {
-        //     $filename = null; // jika input gambar tidak diisi, set nilai filename menjadi null
-        // }
+            // menyimpan file gambar ke direktori 
+            $filename = $gambar->getClientOriginalName();
+            $gambar->storeAs('/public/posts', $filename);
+        } else {
+            $filename = null; // jika input gambar tidak diisi, set nilai filename menjadi null
+        }
 
         // menyimpan data user ke database
         Resep::create([
             'nama_makanan' => $request->nama_makanan,
             'resep' => $request->resep,
-            'gambar' => $request->gambar,
+            'gambar' => $filename,
         ]);
 
         return redirect('kelola-resep')->with('success', 'berhasil ditambahkan!');

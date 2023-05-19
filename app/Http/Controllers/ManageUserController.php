@@ -30,6 +30,7 @@ class ManageUserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         // validasi input
         $request->validate([
             'name' => 'required',
